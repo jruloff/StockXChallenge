@@ -6,7 +6,7 @@ import java.lang.reflect.Array
 
 //class used to parse json response
 class SubRedditJSONParser(posts : JSONObject) {
-    var postsList = mutableListOf<SubRedditPostData>()
+    var postsList : ArrayList<SubRedditPostData> = ArrayList()
     init {
         var postsJSONObject = posts["data"] as JSONObject
         var postObjects = postsJSONObject["children"] as JSONArray

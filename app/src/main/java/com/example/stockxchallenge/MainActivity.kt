@@ -19,20 +19,28 @@ import org.json.JSONArray
 class MainActivity : AppCompatActivity() {
 
     private lateinit var linearLayoutManager: LinearLayoutManager
+    private lateinit var rvAdapter : PostsRecyclerViewAdapter
 
     private var searchQueryHint : String = "search for a subreddit..."
     private var baseRedditURL : String = "https://www.reddit.com/r/"
     private var jsonExtension : String = ".json"
+
+    private var postsArr : ArrayList<SubRedditPostData> = ArrayList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         linearLayoutManager = LinearLayoutManager(this)
         postsRecyclerView.layoutManager = linearLayoutManager
+        rvAdapter = PostsRecyclerViewAdapter(postsArr)
+        postsRecyclerView.adapter = rvAdapter
 
         //configure search bar and search view
         setupSearchView()
     }
+
+//    override fun onStart() {
+//    }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -75,8 +83,13 @@ class MainActivity : AppCompatActivity() {
             Request.Method.GET, subredditURLString, null,
             Response.Listener { response ->
                 print(response.toString())
-                var parsedJSON = SubRedditJSONParser(response).postsList
-                print(parsedJSON)
+                var updatedSearchPostsList = SubRedditJSONParser(response).postsList
+                postsArr.clear()
+                for(i in 0..(updatedSearchPostsList.size-1)) {
+//                    postsList.add(updatedSearchPostsList[i])
+                    postsArr.add(updatedSearchPostsList[i])
+                }
+                rvAdapter.notifyDataSetChanged()
             },
             Response.ErrorListener { error ->
                 print(error.toString())

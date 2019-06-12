@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.posts_recycler_view_item.view.*
 
-class PostsRecyclerViewAdapter(private val posts : MutableList<SubRedditPostData>) : RecyclerView.Adapter<PostsRecyclerViewAdapter.PostHolder>() {
+class PostsRecyclerViewAdapter(private val posts : ArrayList<SubRedditPostData>) : RecyclerView.Adapter<PostsRecyclerViewAdapter.PostHolder>() {
 
     protected val TAG = "PostRecyclerViewAdapter"
 
@@ -18,6 +18,7 @@ class PostsRecyclerViewAdapter(private val posts : MutableList<SubRedditPostData
     }
 
     override fun getItemCount(): Int {
+
         return posts.size
     }
 
@@ -49,6 +50,8 @@ class PostsRecyclerViewAdapter(private val posts : MutableList<SubRedditPostData
 
         fun bindPost(post: SubRedditPostData) {
             this.post = post
+            view.postTitle.text = post.title
+            view.postSubreddit.text = post.subreddit
 //            Picasso.with(view.context).load(photo.url).into(view.itemImage)
 //            view.itemDate.text = photo.humanDate
 //            view.itemDescription.text = photo.explanation
