@@ -1,20 +1,24 @@
 package com.example.stockxchallenge
 
 import android.os.Bundle
-import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity;
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.SearchView
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 
 import kotlinx.android.synthetic.main.activity_main.*
+
+import kotlinx.android.synthetic.main.posts_recycler_view.*
 import org.json.JSONArray
 
 class MainActivity : AppCompatActivity() {
+
+    private lateinit var linearLayoutManager: LinearLayoutManager
 
     private var searchQueryHint : String = "search for a subreddit..."
     private var baseRedditURL : String = "https://www.reddit.com/r/"
@@ -23,11 +27,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-        fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
-        }
+        linearLayoutManager = LinearLayoutManager(this)
+        postsRecyclerView.layoutManager = linearLayoutManager
 
         //configure search bar and search view
         setupSearchView()
