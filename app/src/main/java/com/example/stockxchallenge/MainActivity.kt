@@ -1,11 +1,14 @@
 package com.example.stockxchallenge
 
+import android.graphics.drawable.GradientDrawable
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity;
 import android.view.Menu
 import android.view.MenuItem
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
@@ -34,6 +37,9 @@ class MainActivity : AppCompatActivity() {
         postsRecyclerView.layoutManager = linearLayoutManager
         rvAdapter = PostsRecyclerViewAdapter(postsArr)
         postsRecyclerView.adapter = rvAdapter
+
+        val rvDecoration = DividerItemDecoration(postsRecyclerView.context, linearLayoutManager.orientation)
+        postsRecyclerView.addItemDecoration(rvDecoration)
 
         //configure
         setupSearchView()

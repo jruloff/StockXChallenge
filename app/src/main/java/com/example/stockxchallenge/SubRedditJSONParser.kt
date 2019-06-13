@@ -27,7 +27,11 @@ class SubRedditJSONParser(posts : JSONObject) {
             val postTitle = postJSONData[titleKey] as String
             val postSubreddit = postJSONData[subredditNamePrefixedKey] as String
             val postData = SubRedditPostData(postTitle, postSubreddit)
-            postsList.add(postData)
+
+            //verify obj contains a title and is not parent subreddit description
+            if (!postData.title.isEmpty()) {
+                postsList.add(postData)
+            }
         }
     }
 }
