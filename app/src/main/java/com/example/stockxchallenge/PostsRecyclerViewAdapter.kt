@@ -39,11 +39,15 @@ class PostsRecyclerViewAdapter(private val posts : ArrayList<SubRedditPostData>)
         }
 
         override fun onClick(v: View) {
-            Log.d(TAG, "TODO implement webview")
+            Log.d(TAG, "transition to reddit webview")
+            val context = itemView.context
+            val showPhotoIntent = Intent(context, PostActivity::class.java)
+            showPhotoIntent.putExtra(POST_KEY,post?.postURL)
+            context.startActivity(showPhotoIntent)
         }
 
         companion object {
-            private val POST_KEY = "POST"
+            private val POST_KEY = "postURL"
         }
 
         fun bindPost(post: SubRedditPostData) {

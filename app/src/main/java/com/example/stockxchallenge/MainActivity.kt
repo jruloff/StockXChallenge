@@ -6,6 +6,7 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity;
 import android.view.Menu
 import android.view.MenuItem
+import android.webkit.WebView
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -24,7 +25,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var linearLayoutManager: LinearLayoutManager
     private lateinit var rvAdapter : PostsRecyclerViewAdapter
 
-    private var baseRedditURL : String = "https://www.reddit.com/r/"
     private var jsonExtension : String = ".json"
 
     private var postsArr : ArrayList<SubRedditPostData> = ArrayList()
@@ -69,7 +69,7 @@ class MainActivity : AppCompatActivity() {
 
     //perform GET to retrieve subreddit posts
     private fun retrieveSubRedditPosts(subreddit : String) : JSONArray {
-        var subredditURLString = baseRedditURL + subreddit + jsonExtension
+        var subredditURLString = getString(R.string.subreddit_base_url) + subreddit + jsonExtension
 
         val subRedditPostsJSONObjectRequest = JsonObjectRequest(
             Request.Method.GET, subredditURLString, null,
