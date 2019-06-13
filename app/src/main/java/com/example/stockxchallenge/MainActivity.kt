@@ -21,7 +21,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var linearLayoutManager: LinearLayoutManager
     private lateinit var rvAdapter : PostsRecyclerViewAdapter
 
-    private var searchQueryHint : String = "search for a subreddit..."
     private var baseRedditURL : String = "https://www.reddit.com/r/"
     private var jsonExtension : String = ".json"
 
@@ -48,7 +47,7 @@ class MainActivity : AppCompatActivity() {
 
     //configure query text listeners
     private fun setupSearchView() {
-        redditSearch.setQueryHint(searchQueryHint)
+        redditSearch.setQueryHint(getString(R.string.subreddit_search_hint))
 
         redditSearch.setOnQueryTextListener(object : androidx.appcompat.widget.SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(s : String) : Boolean {
