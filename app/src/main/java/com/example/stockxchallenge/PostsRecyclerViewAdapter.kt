@@ -1,10 +1,12 @@
 package com.example.stockxchallenge
 
+import android.content.Context
 import android.content.Intent
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.webkit.WebView
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.posts_recycler_view_item.view.*
 
@@ -13,7 +15,8 @@ class PostsRecyclerViewAdapter(private val posts : ArrayList<SubRedditPostData>)
     protected val TAG = "PostRecyclerViewAdapter"
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostHolder {
-        val inflatedView = LayoutInflater.from(parent.context).inflate(R.layout.posts_recycler_view_item,parent, false)
+        val inflatedView = LayoutInflater.from(parent.context)
+                            .inflate(R.layout.posts_recycler_view_item,parent, false)
         return PostHolder(inflatedView)
     }
 
@@ -31,17 +34,12 @@ class PostsRecyclerViewAdapter(private val posts : ArrayList<SubRedditPostData>)
         protected val TAG = "PostHolder"
         private var view: View = v
         private var post : SubRedditPostData? = null
-
         init {
             v.setOnClickListener(this)
         }
 
         override fun onClick(v: View) {
-            Log.d(TAG, "clicked on view")
-//            val context = itemView.context
-//            val showPhotoIntent = Intent(context, PostActivity::class.java)
-//            showPhotoIntent.putExtra(POST_KEY, post)
-//            context.startActivity(showPhotoIntent)
+            Log.d(TAG, "TODO implement webview")
         }
 
         companion object {
