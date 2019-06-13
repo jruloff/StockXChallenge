@@ -1,13 +1,11 @@
 package com.example.stockxchallenge
 
-import android.content.Context
 import android.content.Intent
 import android.graphics.Paint
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.webkit.WebView
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.posts_recycler_view_item.view.*
@@ -58,9 +56,6 @@ class PostsRecyclerViewAdapter(private val posts : ArrayList<SubRedditPostData>)
             view.postSubreddit.text = post.subreddit
             view.postSubreddit.paintFlags = Paint.UNDERLINE_TEXT_FLAG
             Picasso.get().load(post.thumbnailURL).into(view.postImageView)
-//            Picasso.with(view.context).load(photo.url).into(view.itemImage)
-//            view.itemDate.text = photo.humanDate
-//            view.itemDescription.text = photo.explanation
         }
 
     }
