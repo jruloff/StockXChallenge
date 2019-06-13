@@ -11,6 +11,7 @@ class SubRedditJSONParser(posts : JSONObject) {
     private val titleKey = "title"
     private val subredditNamePrefixedKey = "subreddit_name_prefixed"
     private val permalinkKey = "permalink"
+    private val thumbnailKey = "thumbnail"
 
     var postsList : ArrayList<SubRedditPostData> = ArrayList()
 
@@ -28,7 +29,8 @@ class SubRedditJSONParser(posts : JSONObject) {
             val postTitle = postJSONData[titleKey] as String
             val postSubreddit = postJSONData[subredditNamePrefixedKey] as String
             val postURL = postJSONData[permalinkKey] as String
-            val postData = SubRedditPostData(postTitle, postSubreddit, postURL)
+            val thumbnailURL = postJSONData[thumbnailKey] as String
+            val postData = SubRedditPostData(postTitle, postSubreddit, postURL, thumbnailURL)
 
             //verify obj contains a title and is not parent subreddit description
             if (!postData.title.isEmpty()) {
